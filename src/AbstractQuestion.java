@@ -9,6 +9,12 @@ public abstract class AbstractQuestion implements question {
         setQuestion(question);
         setAnswer(selection, answer);
     }
+
+    public AbstractQuestion(String question, HashMap<Character, String> answerSet){
+        setQuestion(question);
+        this.answer = answerSet;
+    }
+
     @Override
     public void setQuestion(String question){
         this.question = question;

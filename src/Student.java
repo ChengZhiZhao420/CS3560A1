@@ -1,7 +1,10 @@
-public abstract class Student {
+public class Student {
     private String studentID;
+    public Student(String studentID){
+        setID(studentID);
+    }
 
-    public void setID(String ID) {
+    private void setID(String ID) {
         studentID = ID;
     }
 

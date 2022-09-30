@@ -2,11 +2,15 @@ import java.util.HashMap;
 
 public class MultiChoicesQuestion extends AbstractQuestion{
 
-    public MultiChoicesQuestion(String question, char selection, String answer) {
-        super(question, selection, answer);
-    }
+    public MultiChoicesQuestion(String question, int numberOfAnswer){
+        super(question);
+        char selectionKey = 'A';
 
-    public MultiChoicesQuestion(String question, HashMap<Character, String> answerSet){
-        super(question, answerSet);
+        //generate number of answer base on the input
+        if(numberOfAnswer <= 26){
+            for (int i = 0; i < numberOfAnswer; i++){
+                super.setAnswer((char) (selectionKey + i), "");
+            }
+        }
     }
 }

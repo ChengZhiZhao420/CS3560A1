@@ -4,16 +4,19 @@ public class SimulationDriver {
 
     public static void main(String[] args) {
         List<Student> studentList = studentGenerator(5);
-        HashMap<Character, String> answerSet = answerSetGenerator(false);
-        AbstractQuestion question = new MultiChoicesQuestion("What is your favorite city?", answerSet);
+        AbstractQuestion question = new MultiChoicesQuestion("What is your favorite city?", 10);
         VotingService vs = new VotingService(question);
-        List<Character> keysAsArray = new ArrayList<>(answerSet.keySet());
+        List<Character> keysAsArray = new ArrayList<>(question.getAnswer().keySet());
         Random r = new Random();
 
+        //for each student will randomly pick one answer
         studentList.forEach((student -> vs.startVoting(student, keysAsArray.get(r.nextInt(keysAsArray.size())))));
+
+        //see the statistics of the answer
         vs.displayStatistics();
     }
 
+    //student object generator, each time of the loop will generate a unique id to create a new student object and added into the list
     public static List<Student> studentGenerator(int numberOfStudent){
         List<Student> result = new ArrayList<>();
 
@@ -25,18 +28,4 @@ public class SimulationDriver {
         return result;
     }
 
-    public static HashMap<Character, String> answerSetGenerator(Boolean type){
-        HashMap<Character, String> result = new HashMap<>();
-
-        if(type){
-            result.put('1', "True");
-            result.put('2', "False");
-        }else{
-            result.put('A', "Los Angeles");
-            result.put('B', "Madison");
-            result.put('C', "San Francisco");
-            result.put('D', "New York");
-        }
-        return result;
-    }
 }
